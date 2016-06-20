@@ -21,4 +21,14 @@ class Report
 		@total_internet_data = 0
 	end
 
+	def increment_SMS
+		@total_SMS += 1 
+	end
+
+	def get_total_SMS 
+		return @total_SMS
+	end
+
+
+
 end
