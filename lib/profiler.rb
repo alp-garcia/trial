@@ -23,6 +23,8 @@ module Profiler
 					when /Chamadas Locais/
 						if(row[:tpserv] == 'Chamadas Locais para Celulares TIM' || row[:tpserv] == 'Chamadas Locais para Outros Celulares')
 							report.set_local_mobile_duration(Processor::convert_duration_to_minutes(row[:duracao]))		
+						elsif(row[:tpserv] == 'Chamadas Locais para Outros Telefones Fixos' || row[:tpserv] == 'Chamadas Locais para Telefones Fixos') 
+							report.set_local_fixed_duration(Processor::convert_duration_to_minutes(row[:duracao]))		
 						end
 					end
 				end
