@@ -35,6 +35,10 @@ module Profiler
 						end		
 
 					end
+
+				elsif row[:tpserv] === "Total de Uso Acesso #{phone_number}"
+					report.set_total_internet_data(row[:valor].to_f)
+
 				end
 			end
 

@@ -11,6 +11,7 @@ class Report
 		@total_internet_data				 = 0
 	end
 
+
 	# SMS messages
 	def get_total_SMS 
 		return @total_SMS
@@ -19,7 +20,7 @@ class Report
 	def increment_SMS
 		@total_SMS += 1 
 	end
-	
+
 
 	# local mobile phone
 	def get_total_local_mobile_phone
@@ -56,6 +57,38 @@ class Report
 
 	def set_distance_fixed_duration(call_duration)
 		@total_distance_fixed_phone += call_duration
+	end
+
+
+	# internet data used
+	def get_total_internet_data
+		return @total_internet_data
+	end
+
+	def set_total_internet_data(megabytes)
+		@total_internet_data = megabytes
+	end
+
+
+	# prints to console the result of report
+	def print
+		puts " ------------------------------------------------------ "
+		puts " Relatório de Consumo:"
+		puts "  Número do Telefone: #{@phone_number}"
+		puts "  "
+		puts "  Total de Ligação Locais: "
+		puts "    Total de Ligações Locais para Celular: #{Profiler::Processor::convert_minutes_to_duration(@total_local_mobile_phone)}"
+		puts "    Total de Ligações Locais para Fixo: #{Profiler::Processor::convert_minutes_to_duration(@total_local_fixed_phone)}"
+		puts "  "
+		puts "  Total de Ligação de Longa Distância: "
+		puts "    Total de Ligações de Longa Distância para Celular: #{Profiler::Processor::convert_minutes_to_duration(@total_distance_mobile_phone)}"
+		puts "    Total de Ligações de Longa Distância para Fixo: #{Profiler::Processor::convert_minutes_to_duration(@total_distance_fixed_phone)}"
+		puts "  "
+		puts "  Total de SMS: #{@total_SMS} torpedos"
+		puts "  Total de uso da internet: #{@total_internet_data} megabytes"
+		puts " ------------------------------------------------------ "
+
+		return true
 	end
 
 end

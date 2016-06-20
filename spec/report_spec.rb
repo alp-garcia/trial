@@ -72,4 +72,28 @@ describe Report do
 
 	end
 
+
+	context "validates internet data functions" do 
+		
+		it "can get total of internet data used" do 
+			expect(report.get_total_internet_data).to_not be_nil
+		end
+
+		it "can increment SMS messages to total" do
+			report.set_total_internet_data(15)
+
+			expect(report.get_total_internet_data).to eq(15)
+		end
+
+	end
+
+
+	context "validates report print" do 
+		
+		it "exists print function" do 
+			expect(report.print).to be_truthy
+		end
+
+	end
+
 end
