@@ -20,11 +20,13 @@ Or install it yourself as:
 
 ## Usage
 
-Execute the folling code :
+Execute the following code :
 
     $ profile 'sample_file.csv' '048-8824-2010'
 
 Where the parameter `sample_file.csv` is the path of csv file and `048-8824-2010` is the phone number that you want to generate the report.
+
+Then see the report output on console.
 
 ## Development
 
