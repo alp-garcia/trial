@@ -1,8 +1,6 @@
 # Profiler
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/profiler`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This is a gem to process a specific CSV file and generate a report about an phone number informed by user.
 
 ## Installation
 
@@ -14,7 +12,7 @@ gem 'profiler'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -22,7 +20,11 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Execute the folling code :
+
+    $ profile 'sample_file.csv' '048-8824-2010'
+
+Where the parameter `sample_file.csv` is the path of csv file and `048-8824-2010` is the phone number that you want to generate the report.
 
 ## Development
 
@@ -32,7 +34,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/profiler.
+Bug reports and pull requests are welcome on GitHub at https://github.com/possebom/profiler.
 
 
 ## License
