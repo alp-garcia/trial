@@ -26,6 +26,14 @@ module Profiler
 						elsif(row[:tpserv] == 'Chamadas Locais para Outros Telefones Fixos' || row[:tpserv] == 'Chamadas Locais para Telefones Fixos') 
 							report.set_local_fixed_duration(Processor::convert_duration_to_minutes(row[:duracao]))		
 						end
+
+					when /Chamadas Longa Distância/
+						if Processor::get_phone_type(row[:numcham]) == 'mobile'
+							report.set_distance_mobile_duration(Processor::convert_duration_to_minutes(row[:duracao]))		
+						else 
+							report.set_distance_fixed_duration(Processor::convert_duration_to_minutes(row[:duracao]))		
+						end		
+
 					end
 				end
 			end
@@ -49,6 +57,28 @@ module Profiler
 
 			minutes += seconds / 60
 			return minutes
+		end
+
+
+		# Converts minutes value to duration formatted string (00m00s)
+		# minutes (float): number of minutes to parse
+		def self.convert_minutes_to_duration(minutes)
+			seconds = format('%02d', (minutes.modulo(1)*60).round())
+			minutes = format('%02d', minutes.round())
+
+			return "#{minutes}m#{seconds}s"
+		end
+
+
+		# Gets the phone type by phone number type
+		def self.get_phone_type(phone_number)
+			phone_number_type = phone_number[4]
+
+			if(phone_number_type == "9" || phone_number_type == "8") 
+				return "mobile"
+			end 
+
+			return "fixed"
 		end
 
 	end
