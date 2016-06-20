@@ -1,5 +1,6 @@
 require "profiler/version"
 require "profiler/report"
+require 'smarter_csv'
 
 module Profiler
 	class Processor

@@ -44,6 +44,14 @@ describe Report do
 			expect(report.get_total_local_fixed_phone).to equal(10.0)
 		end
 
+
+		it "validates total of local calls" do
+			report.set_local_mobile_duration(10.0)
+			report.set_local_fixed_duration(10.0)
+
+			expect(report.get_total_local_calls).to equal(20.0)
+		end
+
 	end
 
 
@@ -68,6 +76,13 @@ describe Report do
 			report.set_distance_fixed_duration(10.0)
 			
 			expect(report.get_total_distance_fixed_phone).to equal(10.0)
+		end
+
+		it "validates total of distance calls" do
+			report.set_distance_mobile_duration(10.0)
+			report.set_distance_fixed_duration(10.0)
+
+			expect(report.get_total_distance_calls).to equal(20.0)
 		end
 
 	end

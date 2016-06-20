@@ -40,6 +40,10 @@ class Report
 		@total_local_fixed_phone += call_duration
 	end
 
+	def get_total_local_calls
+		return @total_local_mobile_phone + @total_local_fixed_phone
+	end
+
 
 	# distance mobile phone
 	def get_total_distance_mobile_phone
@@ -59,6 +63,10 @@ class Report
 		@total_distance_fixed_phone += call_duration
 	end
 
+	def get_total_distance_calls
+		return @total_distance_mobile_phone + @total_distance_fixed_phone
+	end
+
 
 	# internet data used
 	def get_total_internet_data
@@ -76,11 +84,11 @@ class Report
 		puts " Relatório de Consumo:"
 		puts "  Número do Telefone: #{@phone_number}"
 		puts "  "
-		puts "  Total de Ligação Locais: "
+		puts "  Total de Ligações Locais: #{Profiler::Processor::convert_minutes_to_duration(get_total_local_calls)}"
 		puts "    Total de Ligações Locais para Celular: #{Profiler::Processor::convert_minutes_to_duration(@total_local_mobile_phone)}"
 		puts "    Total de Ligações Locais para Fixo: #{Profiler::Processor::convert_minutes_to_duration(@total_local_fixed_phone)}"
 		puts "  "
-		puts "  Total de Ligação de Longa Distância: "
+		puts "  Total de Ligações de Longa Distância: #{Profiler::Processor::convert_minutes_to_duration(get_total_distance_calls)}"
 		puts "    Total de Ligações de Longa Distância para Celular: #{Profiler::Processor::convert_minutes_to_duration(@total_distance_mobile_phone)}"
 		puts "    Total de Ligações de Longa Distância para Fixo: #{Profiler::Processor::convert_minutes_to_duration(@total_distance_fixed_phone)}"
 		puts "  "

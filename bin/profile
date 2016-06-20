@@ -3,5 +3,5 @@
 require "bundler/setup"
 require "profiler"
 
-processor = Profiler::Processor.new
-processor.process_file(ARGV[0], ARGV[1])
+report = Profiler::Processor::process_file(ARGV[0], ARGV[1])
+report.print
