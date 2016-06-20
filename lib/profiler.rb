@@ -19,18 +19,34 @@ module Profiler
 					case row[:tpserv]
 					when /TIM Torpedo/
 						report.increment_SMS
-					end
 
+					when /Chamadas Locais/
+						if(row[:tpserv] == 'Chamadas Locais para Celulares TIM' || row[:tpserv] == 'Chamadas Locais para Outros Celulares')
+							report.set_local_mobile_duration(Processor::convert_duration_to_minutes(row[:duracao]))		
+						end
+					end
 				end
 			end
 
 			return report
 		end
 
+
 		# Reads a CSV file and converts to array
 		# file_path (string): the path of file to process the report
 		def self.read_file(file_path)
 			return SmarterCSV.process(file_path, {:col_sep => ';', :key_mapping => {:duração => :duracao}})
+		end
+
+
+		# Converts a duration string value (format: 00m00s) to minutes as float
+		# duration (string): value with format 00m00s
+		def self.convert_duration_to_minutes(duration)
+			minutes = duration[0..1].to_f
+			seconds = duration[3..4].to_f
+
+			minutes += seconds / 60
+			return minutes
 		end
 
 	end
